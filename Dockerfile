@@ -1,39 +1,24 @@
-FROM ubuntu:16.04
+FROM rodneygomes/chrome:base
 
-MAINTAINER Tomohisa Kusano <siomiz@gmail.com>
+MAINTAINER Rodney Gomes <rodneygomes@gmail.com>
+
+ARG CHROME_DEB="archive/chrome64_59.0.3071.86.deb"
 
 COPY copyables /
 
-ADD https://dl.google.com/linux/linux_signing_key.pub /tmp/
-ADD https://launchpad.net/ubuntu/+archive/primary/+files/libgcrypt11_1.5.3-2ubuntu4.4_amd64.deb /tmp/
+RUN mkdir -p /archive
+COPY ${CHROME_DEB} /archive
 
-RUN apt-key add /tmp/linux_signing_key.pub \
-	&& apt-get update \
-	&& apt-get install -y \
-	google-chrome-stable \
-	chrome-remote-desktop \
-	fonts-takao \
-	pulseaudio \
-	supervisor \
-	x11vnc \
-	fluxbox \
-	&& dpkg -i /tmp/libgcrypt11_*.deb \
-	&& apt-get clean \
-	&& rm -rf /var/cache/* /var/log/apt/* /var/lib/apt/lists/* /tmp/* \
-	&& addgroup chrome-remote-desktop \
-	&& useradd -m -G chrome-remote-desktop,pulse-access chrome \
-	&& ln -s /crdonly /usr/local/sbin/crdonly \
-	&& ln -s /update /usr/local/sbin/update \
-	&& mkdir -p /home/chrome/.config/chrome-remote-desktop \
-	&& mkdir -p /home/chrome/.fluxbox \
-	&& echo ' \n\
-		session.screen0.toolbar.visible:        false
-		session.screen0.fullMaximization:       true
-		session.screen0.maxDisableResize:       true
-		session.screen0.maxDisableMove: true
-		session.screen0.defaultDeco:    NONE
-	' >> /home/chrome/.fluxbox/init \
-	&& chown -R chrome:chrome /home/chrome/.config /home/chrome/.fluxbox
+# install the version of chrome you picked
+RUN dpkg -i /${CHROME_DEB}
+
+# clean up to save on image size
+RUN apt-get clean
+RUN rm -rf /archive /var/cache/* /var/log/apt/* /var/lib/apt/lists/* /tmp/*
+
+RUN useradd -m -G pulse-access chrome
+RUN mkdir -p /home/chrome/.fluxbox
+RUN chown -R chrome:chrome /home/chrome/
 
 VOLUME ["/home/chrome"]
 
