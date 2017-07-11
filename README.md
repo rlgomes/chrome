@@ -4,9 +4,7 @@ This is based off of the work done by https://github.com/siomiz/chrome and
 what I wanted is an easy way to spin up an older chrome version for testing
 purposes. I've done my best to find older builds of google chrome and create a
 simple docker container that expose VNC so you can spin up the browser and use
-it to verify whatever you need. That said the older 45,46 and 47 builds are
-unstable builds while the remainder are all stable builds I dug up through 
-various searches on google.
+it to verify whatever you need.
 
 I intend on keeping track of newer releases of google chrome through the stable
 channel and making sure to upload the latest .deb file as well as building the
