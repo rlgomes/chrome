@@ -20,9 +20,6 @@ RUN useradd -m -G pulse-access chrome
 RUN mkdir -p /home/chrome/.fluxbox
 RUN chown -R chrome:chrome /home/chrome/
 
-# HACK: due to the fact that a few builds 45, 46 and 47 are unstable builds
-RUN if [ -d /opt/google/chrome-unstable ]; then mv /opt/google/chrome-unstable /opt/google/chrome; fi
-
 VOLUME ["/home/chrome"]
 
 EXPOSE 5900
