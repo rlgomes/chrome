@@ -1,6 +1,6 @@
 # Google Chrome Testing Images
 
-This is based off of the work done by https://github.com/siomiz/chrome and 
+This is based off of the work done by https://github.com/siomiz/chrome and
 what I wanted is an easy way to spin up an older chrome version for testing
 purposes. I've done my best to find older builds of google chrome and create a
 simple docker container that expose VNC so you can spin up the browser and use
@@ -12,7 +12,7 @@ container image and uploading to docker.
 
 # Usage
 
-## What versions are available ? 
+## What versions are available ?
 
 You can see the available versions in the tags of the docker repo:
 
@@ -20,11 +20,23 @@ https://hub.docker.com/r/rodneygomes/chrome/tags/
 
 ## Startup Chrome at version N
 
-`docker run -p 127.0.0.1:5900:5900 rodneygomes/chrome:v59`
+```
+docker run -p 127.0.0.1:5900:5900 rodneygomes/chrome:v59
+```
 
 Where `v59` can be any available tag which lines up to a specific chrome version
 and once you start you can then connect to vnc running at vnc://localhost:5900
+and use the default password is "s3cr3t" and if you want to start the VNC server
+with a different password then run like so:
+
+```
+docker run -p 127.0.0.1:5900:5900 --env VNC_PASSWORD=... rodneygomes/chrome:v59
+```
+
+Where `...` is replaced with the desired new password.
 
 # Development
 
-Work in progress so please feel free to open an issue/pr
+Work in progress so please feel free to open an
+[issue](https://github.com/rlgomes/chrome/issues) or
+[pull request](https://github.com/rlgomes/chrome/pulls)

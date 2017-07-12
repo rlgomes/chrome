@@ -2,6 +2,7 @@ FROM rodneygomes/chrome:base
 
 MAINTAINER Rodney Gomes <rodneygomes@gmail.com>
 
+ENV VNC_PASSWORD="s3cr3t"
 ARG CHROME_DEB="archive/chrome64_59.0.3071.86.deb"
 
 COPY copyables /

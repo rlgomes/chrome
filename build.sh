@@ -2,7 +2,7 @@
 #
 # builds and tags all of the .deb files under archive
 #
-    
+
 docker build base --tag rodneygomes/chrome:base
 
 for DEB in `ls archive`
