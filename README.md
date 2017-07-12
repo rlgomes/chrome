@@ -37,6 +37,5 @@ Where `...` is replaced with the desired new password.
 
 # Development
 
-Work in progress so please feel free to open an
-[issue](https://github.com/rlgomes/chrome/issues) or
-[pull request](https://github.com/rlgomes/chrome/pulls)
+Work in progress so please feel free to open an [issue](https://github.com/rlgomes/chrome/issues)
+or [pull request](https://github.com/rlgomes/chrome/pulls)
